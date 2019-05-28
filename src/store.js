@@ -6,9 +6,11 @@ Vue.use(Vuex)
 const state = {
   user: {},
   token: null,
-  permissions: [],
+  permissions: {},
   roles: [],
-  appCode: 'CJK2233448'
+  appCode: 'CJK2233448',
+  app: {},
+  organisation: {}
 }
 
 const mutations = {
@@ -23,6 +25,12 @@ const mutations = {
   },
   setRoles (state, roles) {
     state.roles = roles
+  },
+  setApp (state, app) {
+    state.app = app
+  },
+  setOrganisation (state, organisation) {
+    state.organisation = organisation
   }
 }
 
@@ -38,6 +46,12 @@ const getters = {
   },
   getRoles () {
     return state.roles
+  },
+  getApp () {
+    return state.app
+  },
+  getOrganisation () {
+    return state.organisation
   }
 }
 

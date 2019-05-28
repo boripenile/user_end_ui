@@ -1,10 +1,12 @@
 <template>
   <div v-loading="loading">
+    <div class="vld-parent">
+          <loading :active.sync="isLoading" 
+          :is-full-page="true"></loading></div>
     <app-header></app-header>
 
     <!-- Left side column. contains the sidebar -->
     <app-sidebar></app-sidebar>
-
     <!-- Content Wrapper. Contains page content -->
     <router-view></router-view>
     <!-- /.content-wrapper -->
@@ -20,6 +22,9 @@
   import Header from './partials/Header.vue'
   import Footer from './partials/Footer.vue'
   import ControlSidebar from './partials/ControlSidebar.vue'
+  import NprogressContainer from 'vue-nprogress/src/NprogressContainer'
+  import Loading from 'vue-loading-overlay'
+  import 'vue-loading-overlay/dist/vue-loading.css'
 
   export default {
     name: 'Dashboard',
@@ -27,7 +32,9 @@
       'app-sidebar': Sidebar,
       'app-header': Header,
       'app-footer': Footer,
-      'control-sidebar': ControlSidebar
+      'control-sidebar': ControlSidebar,
+      Loading,
+      NprogressContainer
     }
   }
 </script>

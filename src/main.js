@@ -10,6 +10,9 @@ import VueAnimateNumber from 'vue-animate-number'
 import VueGmaps from 'vue-gmaps'
 import VueLayers from 'vuelayers'
 import VCharts from 'v-charts'
+// Import stylesheet
+import 'vue-loading-overlay/dist/vue-loading.css'
+// Init plugin
 // Resource logic
 // Vue.use(Resource)
 // Vue.http.options.emulateJSON = true
@@ -78,7 +81,7 @@ router.beforeEach((to, from, next) => {
 // Check local storage to handle refreshes
 if (window.localStorage) {
   if (store.state.token !== window.localStorage.getItem('token')) {
-    store.commit('SET_TOKEN', window.localStorage.getItem('token'))
+    store.commit('setToken', window.localStorage.getItem('token'))
   }
 }
 

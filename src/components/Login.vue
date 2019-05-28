@@ -4,6 +4,10 @@
       <!-- Content Header (Page header) -->
       <!-- Main content -->
       <div class="login-box">
+        <div class="vld-parent">
+          <loading :active.sync="isLoading" 
+          :is-full-page="true"></loading></div>
+        <el-alert v-if="hasError" v-bind:title="title" type="error" v-bind:description="message" show-icon> </el-alert>
         <center><h2>Login</h2></center>
         <hr>
         <form role="form">
@@ -47,19 +51,39 @@
   </transition>
 </template>
 <script>
+import Loading from 'vue-loading-overlay'
+import 'vue-loading-overlay/dist/vue-loading.css'
+import { mapMutations } from 'vuex'
+import sweetalert from 'sweetalert'
+
 export default {
   data: function () {
     return {
+      isLoading: false,
       username: '',
-      password: '',
-      dialogVisible: false
+      password: ''
     }
   },
+  components: {
+    Loading
+  },
   methods: {
+    ...mapMutations(['setUser', 'setToken', 'setApp', 'setRoles', 'setPermissions', 'setOrganisation']),
+    showAlert: function (message) {
+      sweetalert({
+        title: 'Error',
+        text: message,
+        type: 'error',
+        confirmButtonColor: '#DD6B55',
+        confirmButtonText: 'OK',
+        closeOnConfirm: true
+      })
+    },
     login: function () {
       const username = this.username
       const password = this.password
       if (username.length > 0 && password.length > 0) {
+        this.isLoading = true
         this.$http.userapi.post('/login', {
           'username': username,
           'password': password
@@ -68,22 +92,25 @@ export default {
             'app_code': this.$store.state.appCode
           }
         }).then(response => {
-          console.log(response.data)
+          this.isLoading = false
+          if (response.data.code === 400) {
+            console.log(response.data.message)
+            this.showAlert(response.data.message)
+          } else {
+            console.log(response.data)
+            this.setToken(response.data.token)
+            this.setUser(response.data.data)
+            this.setApp(response.data.application)
+            this.setOrganisation(response.data.organisation)
+            this.setRoles(response.data.roles)
+            this.setPermissions(response.data.permissions)
+            this.$router.push('/profile')
+          }
         }).catch(error => {
+          this.isLoading = false
           console.log(error)
         })
       }
-    },
-    handleClose: function (done) {
-      this.$confirm(
-        'This will permanently delete the file. Continue?',
-        'Warning',
-        {
-          confirmButtonText: 'OK',
-          cancelButtonText: 'Cancel',
-          type: 'warning'
-        }
-      )
     }
   }
 }

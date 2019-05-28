@@ -1,16 +1,15 @@
 import axios from 'axios'
-// import { Loading } from 'quasar'
+// import Nprogress from 'nprogress'
 
 let loadFunction = config => {
-  // Loading.show()
   return config
 }
 let finishFunction = response => {
-  // Loading.hide()
+  // Nprogress.done()
   return response
 }
 let errorFunction = error => {
-  // Loading.hide()
+  // Nprogress.done()
   return Promise.reject(error)
 }
 
