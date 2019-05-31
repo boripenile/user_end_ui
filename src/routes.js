@@ -32,7 +32,7 @@ import ShopHome from './components/modules/ShopHome.vue'
 import ShopItem from './components/modules/ShopItem.vue'
 import BlankPage from './components/modules/common-page/BlankPage.vue'
 import InvoicePage from './components/modules/common-page/Invoice.vue'
-import Profile from './components/modules/common-page/Profile.vue'
+import Profile from './components/modules/pages/Profile.vue'
 import Login from './components/Login.vue'
 import NotFoundSecond from './components/modules/dashboard/500.vue'
 import SimpleTable from './components/modules/tables/SimpleTable.vue'
@@ -43,6 +43,7 @@ import Upload from './components/modules/ui/Upload.vue'
 import Gmap from './components/modules/Gmap.vue'
 import ChartMap from './components/modules/chart/ChartMap.vue'
 import OpenLayer from './components/modules/OpenLayer.vue'
+import Role from './components/modules/pages/settings/Role.vue'
 
 // Routes
 const routes = [
@@ -70,6 +71,10 @@ const routes = [
         path: '/dashboard',
         name: 'dashboard',
         component: DashboardIndex
+      }, {
+        path: 'roles',
+        name: 'roles',
+        component: Role
       }, {
         path: '/chat',
         name: 'chat',

@@ -8,7 +8,7 @@
                     <li>
                         <router-link to="/"> <i class="ti-home"></i></router-link>
                     </li>
-                    <li><a href="#">Apps</a></li>
+                    <li><a href="#">{{ getApplication.app_name }}</a></li>
                     <li class="active">Profile</li>
                 </ol>
             </section>
@@ -22,7 +22,7 @@
                                 <a href="#"><img src="http://api.randomuser.me/portraits/men/32.jpg" alt="cover" class="cover-profile" /></a>
                                 <div class="hero">
                                     <div class="details-profile">
-                                        <div class="title1">Dave Mattew <span>Web Designer</span></div>
+                                        <div class="title1">{{ getUser.first_name }} {{ getUser.last_name }} <span>Web Designer</span></div>
                                         <div class="title2">The Battle of the Five Armies</div>
                                     </div>
                                
@@ -94,22 +94,18 @@
                                 </ul>
                             </div>
                             <div class="col-xs-12 col-sm-12 profile-name">
-                                <h2>Dave Mattew
+                                <h2>{{ getUser.first_name }} {{ getUser.last_name }}
                                         <span class="pull-right social-profile">
                                             <i class="entypo-facebook-circled"></i>  <i class="entypo-twitter-circled"></i>  <i class="entypo-linkedin-circled"></i>  <i class="entypo-github-circled"></i>  <i class="entypo-gplus-circled"></i>
                                         </span>
                                     </h2>
                                 <hr>
-                                <dl class="dl-horizontal-profile"> <dt>User Id</dt>
-                                    <dd>eko.sulis</dd> <dt>Name</dt>
-                                    <dd>Eko Sulistyo</dd> <dt>Email</dt>
-                                    <dd>eko.sulistyo@yahoo.com</dd> <dt>Phone</dt>
-                                    <dd>081 725 xxx</dd> <dt>Active Periode</dt>
+                                <dl class="dl-horizontal-profile"> <dt>Name</dt>
+                                    <dd>{{ getUser.first_name }} {{ getUser.last_name }}</dd> <dt>Email</dt>
+                                    <dd>{{ getUser.email_address }}</dd> <dt>Phone</dt>
+                                    <dd>{{ getUser.phone_number }}</dd> <dt>Active Periode</dt>
                                     <dd>02 Dec 2014</dd> <dt>Last Update</dt>
-                                    <dd>02 Apr 2014</dd> <dt>About</dt>
-                                    <dd>Web Designer / UI</dd> <dt>Hobbies</dt>
-                                    <dd>Read, out with friends, listen to music, draw and learn new things</dd> <dt>Skills</dt>
-                                    <dd> <span class="tags">html5</span> <span class="tags">css3</span> <span class="tags">jquery</span> <span class="tags">bootstrap3</span> </dd>
+                                    <dd>02 Apr 2014</dd>
                                 </dl>
                             </div>
                         </div>
@@ -121,7 +117,11 @@
     </transition>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   export default {
-    name: 'Profile'
+    name: 'Profile',
+    computed: {
+      ...mapGetters(['getUser', 'getApplication', 'getOrganisation'])
+    }
   }
 </script>

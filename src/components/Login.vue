@@ -68,7 +68,7 @@ export default {
     Loading
   },
   methods: {
-    ...mapMutations(['setUser', 'setToken', 'setApp', 'setRoles', 'setPermissions', 'setOrganisation']),
+    ...mapMutations(['setUser', 'setToken', 'setApplication', 'setRoles', 'setPermissions', 'setOrganisation']),
     showAlert: function (message) {
       sweetalert({
         title: 'Error',
@@ -100,7 +100,7 @@ export default {
             console.log(response.data)
             this.setToken(response.data.token)
             this.setUser(response.data.data)
-            this.setApp(response.data.application)
+            this.setApplication(response.data.application)
             this.setOrganisation(response.data.organisation)
             this.setRoles(response.data.roles)
             this.setPermissions(response.data.permissions)

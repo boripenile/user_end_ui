@@ -3,7 +3,7 @@
         <!-- Logo -->
         <router-link to="/dashboard" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels --><span class="logo-mini"><b> <img src="static/img/logo.png" alt="User Image"></b></span>
-            <!-- logo for regular state and mobile devices --><span class="logo-lg"><img src="static/img/logo.png" alt="User Image"><b>Devin</b>vue</span> </router-link>
+            <!-- logo for regular state and mobile devices --><span class="logo-lg"><img src="static/img/logo.png" alt="User Image"><b>{{ getOrganisation.name }}</b></span> </router-link>
         <!-- Header Navbar: style can be found in header.less -->
         <nav class="navbar navbar-static-top">
             <!-- Sidebar toggle button-->
@@ -143,10 +143,14 @@
     </header>
 </template>
 <script>
+  import { mapGetters } from 'vuex'
   export default {
     name: 'DashboardHeader',
     mounted: function () {
 
+    },
+    computed: {
+      ...mapGetters(['getUser', 'getApplication', 'getOrganisation'])
     }
   }
 </script>
