@@ -37,7 +37,11 @@
                         <ul class="treeview-menu">
                             <li>
                                 <router-link to="/roles">
-                                    <avatar username="Dashaboard One" :size='20' color="#fff"></avatar>Roles Management</router-link>
+                                    <avatar username="Roles Management" :size='20' color="#fff"></avatar>Roles Management</router-link>
+                            </li>
+                            <li>
+                                <router-link to="/users">
+                                    <avatar username="Users Management" :size='20' color="#fff"></avatar>Users Management</router-link>
                             </li>
                         </ul>
                     </li>
@@ -325,14 +329,15 @@ export default {
     Avatar
   },
   computed: {
-    ...mapGetters(['getUser'])
+    ...mapGetters(['getUser', 'getRoles'])
   },
   methods: {
-    ...mapMutations(['setToken', 'setUser']),
+    ...mapMutations(['setToken', 'setUser', 'setOrganisation']),
     logout: function () {
       this.setToken(null)
       this.setUser(null)
-      this.$router.push('/login')
+      this.setOrganisation(null)
+      this.$router.push('/app/login')
     },
     profile: function () {
       this.$router.push('/profile')

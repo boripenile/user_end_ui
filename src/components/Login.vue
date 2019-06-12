@@ -1,8 +1,5 @@
 <template>
   <transition name="el-zoom-in-top">
-    <!-- <div class="content-wrapper"> -->
-      <!-- Content Header (Page header) -->
-      <!-- Main content -->
       <div class="login-box">
         <div class="vld-parent">
           <loading :active.sync="isLoading" 
@@ -46,8 +43,6 @@
           </div>
         </div>
       </div>
-      <!-- /.content -->
-    <!-- </div> -->
   </transition>
 </template>
 <script>
@@ -68,7 +63,7 @@ export default {
     Loading
   },
   methods: {
-    ...mapMutations(['setUser', 'setToken', 'setApplication', 'setRoles', 'setPermissions', 'setOrganisation']),
+    ...mapMutations(['setUser', 'setToken', 'setApplication', 'setRoles', 'setPermissions', 'setOrganisations', 'setOrganisation']),
     showAlert: function (message) {
       sweetalert({
         title: 'Error',
@@ -94,17 +89,22 @@ export default {
         }).then(response => {
           this.isLoading = false
           if (response.data.code === 400) {
-            console.log(response.data.message)
             this.showAlert(response.data.message)
           } else {
-            console.log(response.data)
-            this.setToken(response.data.token)
-            this.setUser(response.data.data)
-            this.setApplication(response.data.application)
-            this.setOrganisation(response.data.organisation)
-            this.setRoles(response.data.roles)
-            this.setPermissions(response.data.permissions)
-            this.$router.push('/profile')
+            if (response.data.organisation.length === 1) {
+              this.setToken(response.data.token)
+              this.setUser(response.data.data)
+              this.setApplication(response.data.application)
+              this.setOrganisation(response.data.organisation[0])
+              this.setRoles(response.data.roles)
+              this.setPermissions(response.data.permissions)
+              this.$router.push('/profile')
+            } else {
+              this.setUser(response.data.data)
+              this.setApplication(response.data.application)
+              this.setOrganisations(response.data.organisation)
+              this.$router.push('/app/my-companies')
+            }
           }
         }).catch(error => {
           this.isLoading = false

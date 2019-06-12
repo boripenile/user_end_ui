@@ -19,7 +19,9 @@
              
                         <div class="movie-card">
                             <div class="container-movie">
-                                <a href="#"><img src="http://api.randomuser.me/portraits/men/32.jpg" alt="cover" class="cover-profile" /></a>
+                                <a href="#"><img v-bind:src="getUser.image_url"
+                                width="190" height="200"
+                                alt="cover" class="cover-profile" /></a>
                                 <div class="hero">
                                     <div class="details-profile">
                                         <div class="title1">{{ getUser.first_name }} {{ getUser.last_name }} <span>Web Designer</span></div>

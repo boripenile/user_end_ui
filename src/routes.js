@@ -1,4 +1,5 @@
 import Dashboard from './components/Dashboard.vue'
+import GenericPage from './components/GenericPage.vue'
 import DashboardIndex from './components/modules/dashboard/Index.vue'
 import NotFound from './components/modules/dashboard/404.vue'
 import WidgetsIndex from './components/modules/widgets/Index.vue'
@@ -34,6 +35,7 @@ import BlankPage from './components/modules/common-page/BlankPage.vue'
 import InvoicePage from './components/modules/common-page/Invoice.vue'
 import Profile from './components/modules/pages/Profile.vue'
 import Login from './components/Login.vue'
+import MyCompanies from './components/MyCompanies.vue'
 import NotFoundSecond from './components/modules/dashboard/500.vue'
 import SimpleTable from './components/modules/tables/SimpleTable.vue'
 import SelectTable from './components/modules/tables/SelectTable.vue'
@@ -48,9 +50,25 @@ import Role from './components/modules/pages/settings/Role.vue'
 // Routes
 const routes = [
   {
-    path: '/login',
-    name: 'login',
-    component: Login
+    path: '/app',
+    component: GenericPage,
+    beforeEnter: (to, from, next) => {
+      document.body.className += 'skin-dark sidebar-mini'
+      next()
+    },
+    children: [
+      {
+        path: '/app/login',
+        name: 'login',
+        component: Login
+      },
+      {
+        path: '/app/my-companies',
+        name: 'my-companies',
+        component: MyCompanies,
+        meta: { requiresAuth: true }
+      }
+    ]
   },
   {
     path: '/',

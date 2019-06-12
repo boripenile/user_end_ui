@@ -54,16 +54,14 @@ var router = new VueRouter({
 router.beforeEach((to, from, next) => {
   // window.console.log('Transition', transition)
   var token = store.state.token
-  console.log(to.name)
-  // if (to.name === 'login') {
-  //   next()
-  // }
   if (token === null || token === 'undefined') {
     if (to.name === 'login') {
       next()
+    } else if (to.name === 'my-companies') {
+      next()
     } else {
       next({
-        path: '/login',
+        path: '/app/login',
         query: {redirect: to.fullPath}
       })
     }

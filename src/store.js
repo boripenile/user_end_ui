@@ -10,7 +10,8 @@ const state = {
   roles: [],
   appCode: 'CJK2233448',
   application: {},
-  organisation: {}
+  organisation: {},
+  organisations: []
 }
 
 const mutations = {
@@ -31,6 +32,9 @@ const mutations = {
   },
   setOrganisation (state, organisation) {
     state.organisation = organisation
+  },
+  setOrganisations (state, organisations) {
+    state.organisations = organisations
   }
 }
 
@@ -52,6 +56,9 @@ const getters = {
   },
   getOrganisation () {
     return state.organisation
+  },
+  getOrganisations () {
+    return state.organisations
   }
 }
 
