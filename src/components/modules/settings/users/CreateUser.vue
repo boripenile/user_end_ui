@@ -1,12 +1,12 @@
 <template>
     <div class="create-todo">
-        <el-button type="info" v-on:click="openForm" v-show="!isCreating"><i class='ti-pencil-alt'></i>&nbsp;&nbsp;Add New Role</el-button>
+        <el-button type="info" v-on:click="openForm" v-show="!isCreating"><i class='ti-pencil-alt'></i>&nbsp;&nbsp;Add New User</el-button>
         <div v-show="isCreating">
             <div class='content-todo-devin'>
                 <div>
                     <label>Role</label>
                     <p>
-                        <el-input placeholder="Role name" v-model="roleNameText" type='text'></el-input>
+                        <el-input placeholder="First name" v-model="firstNameText" type='text'></el-input>
                     </p>
                 </div>
                 <div>
@@ -41,12 +41,13 @@ export default {
     },
     sendForm: function () {
       if (this.roleNameText.length > 0 && this.descriptionText.length > 0) {
-        const roleName = this.roleNameText
-        const description = this.descriptionText
+        const firstName = this.roleNameText
+        const lastName = this.descriptionText
         this.$emit('create-role', {
           id: 0,
-          roleName,
-          description,
+          firstName,
+          lastName,
+          otherName,
           active: false
         })
         this.roleNameText = ''

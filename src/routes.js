@@ -46,6 +46,7 @@ import Gmap from './components/modules/Gmap.vue'
 import ChartMap from './components/modules/chart/ChartMap.vue'
 import OpenLayer from './components/modules/OpenLayer.vue'
 import Role from './components/modules/pages/settings/Role.vue'
+import User from './components/modules/pages/settings/User.vue'
 
 // Routes
 const routes = [
@@ -93,6 +94,10 @@ const routes = [
         path: 'roles',
         name: 'roles',
         component: Role
+      }, {
+        path: 'users',
+        name: 'users',
+        component: User
       }, {
         path: '/chat',
         name: 'chat',
