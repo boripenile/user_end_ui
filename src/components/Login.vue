@@ -6,7 +6,7 @@
           :is-full-page="true"></loading></div>
         <el-alert v-if="hasError" v-bind:title="title" type="error" v-bind:description="message" show-icon> </el-alert>
         <br/>
-        <center><h2>Welcome!</h2></center>
+        <center><h2>Login</h2></center>
         <hr>
         <form role="form">
           <div class="form-group">
@@ -24,8 +24,8 @@
               <input type="checkbox">Remember me
             </label>
           </div>
-          <el-button type="primary" round icon="el-icon-right" class="btn btn btn-primary pull-right" 
-          @click.prevent="login">Log In</el-button>
+          <el-button type="primary" round class="btn btn btn-primary pull-right" 
+          @click.prevent="login">Log In  <i class="el-icon-d-arrow-right"></i></el-button>
         </form>
         <a class="forgotLnk" href="#"></a>
         <div class="or-box">

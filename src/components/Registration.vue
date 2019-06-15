@@ -1,23 +1,84 @@
 <template>
   <transition name="el-zoom-in-top">
-      <div class="login-box">
+      <el-row>
         <div class="vld-parent">
           <loading :active.sync="isLoading" 
           :is-full-page="true"></loading></div>
-        <el-button type="success" icon="el-icon-d-arrow-left"
-              @click="loginPage()" plain round>Back to Login</el-button>  
-        <br/><br/>
-        <center>
-          <h2>Registration</h2>
-          <br/>
-          <h4>{{ message }}</h4>
-          <br/><br/>
-          
-          
-        </center>
-        <br/><br/>
-        <br/>  
-      </div>
+        <el-col>
+          <div class="box">
+            <div class="box-header">
+              <el-button type="primary" icon="el-icon-d-arrow-left"
+              @click="loginPage()" plain round>Back to Login</el-button> 
+              <h3>Start Registration</h3>
+              <p>Register your hotel and catering business with us today and 
+                have access to the best online service that takes care of your business.</p>
+              <p v-if="error">{{ message }}</p>
+            </div>
+            <div class="box-body">
+              <h4>Business Information</h4>
+              <p>Please complete all fields expect optional ones.</p>
+              <div class="row">
+                <div class="col-lg-3">
+                  <p>Business Name</p>
+                  <el-input v-model="organisation.organisationName" placeholder="What is your business name"></el-input>
+                </div>
+                <div class="col-lg-3">
+                  <p>Business Description</p>
+                  <el-input v-model="organisation.workingDescription" placeholder="Tell us about your business"></el-input>
+                </div>
+                <div class="col-lg-3">
+                  <p>Referral Code <em>(optional)</em></p>
+                  <el-input v-model="organisation.referralCode" placeholder="Enter a valid referral code" type="email"></el-input>
+                </div>
+                <div class="col-lg-3">
+                  <p>Do you have a motto? <em>(optional)</em></p>
+                  <el-input v-model="organisation.motto" placeholder="Enter your business motto"></el-input>
+                </div>
+              </div>
+              <br/>
+              <h4>Contact Information</h4>
+              <p>Please complete all fields expect optional ones. Ensure that you use a valid email address and phone number</p>
+              <div class="row">
+                <div class="col-lg-3">
+                  <p>First Name</p>
+                  <el-input v-model="contact.firstName" placeholder="First name"></el-input>
+                </div>
+                <div class="col-lg-3">
+                  <p>Last Name</p>
+                  <el-input v-model="contact.lastName" placeholder="Last name"></el-input>
+                </div>
+                <div class="col-lg-3">
+                  <p>Email Address</p>
+                  <el-input v-model="contact.emailAddress" placeholder="Enter a valid Email Address" type="email"></el-input>
+                </div>
+                <div class="col-lg-3">
+                  <p>Phone Number</p>
+                  <el-input v-model="contact.phoneNumber" placeholder="Enter a valid phone number"></el-input>
+                </div>
+              </div>
+              <br/>
+              <h4>Login Details</h4>
+              <p>Please complete all fields expect optional ones</p>
+              <div class="row">
+                <div class="col-lg-4">
+                  <p>Username</p>
+                  <el-input v-model="login.username" placeholder="Choose a username"></el-input>
+                </div>
+                <div class="col-lg-4">
+                  <p>Password</p>
+                  <el-input v-model="login.password" placeholder="Enter password" type="password"></el-input>
+                </div>
+                <div class="col-lg-4">
+                  <p>Confirm Password</p>
+                  <el-input v-model="login.confirmPassword" placeholder="Confirm password" type="password"></el-input>
+                </div>
+              </div><br/>
+              <el-button type="primary" round class="btn btn btn-primary pull-right" 
+          @click.prevent="">Proceed to Registration  <i class="el-icon-d-arrow-right"></i></el-button>
+            </div>
+          </div>
+        </el-col>  
+    </el-row>
   </transition>
 </template>
 <script>
@@ -30,9 +91,25 @@ export default {
   data: function () {
     return {
       isLoading: false,
-      success: false,
       error: false,
-      message: 'Start registration process...'
+      message: 'Error message',
+      organisation: {
+        organisationName: '',
+        referralCode: '',
+        workingDescription: '',
+        motto: ''
+      },
+      contact: {
+        firstName: '',
+        lastName: '',
+        emailAddress: '',
+        phoneNumber: ''
+      },
+      login: {
+        username: '',
+        password: '',
+        confirmPassword: ''
+      }
     }
   },
   components: {
@@ -69,11 +146,18 @@ export default {
       console.log('Verification Code: ' + this.verifyCode)
       if (this.verifyCode != null) {
         this.isLoading = true
-        this.$http.userapi.post('/users', null, {
+        this.$http.userapi.post('/users', {
+          'organisation': this.organisation,
+          'firstName': this.contact.firstName,
+          'lastName': this.contact.lastName,
+          'emailAddress': this.contact.emailAddress,
+          'phoneNumber': thihs.contact.phoneNumber,
+          'username': this.login.username,
+          'password': this.login.password,
+          'appCode': this.$store.state.appCode
+        }, {
           headers: {
-            'app_code': this.$store.state.appCode,
-            'verify_code': this.verifyCode,
-            'action': 'verifyUserEmail'
+            'action': 'registerUser'
           }
         }).then(response => {
           this.isLoading = false
@@ -107,7 +191,7 @@ export default {
 </script>
 
 <style>
-.login-box {
-  margin: 0 auto;
+.button-left-margin {
+  margin-left: 50px;
 }
 </style>
