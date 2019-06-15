@@ -59,6 +59,10 @@ router.beforeEach((to, from, next) => {
       next()
     } else if (to.name === 'my-companies') {
       next()
+    } else if (to.name === 'verify-email') {
+      next()
+    } else if (to.name === 'registration') {
+      next()
     } else {
       next({
         path: '/app/login',

@@ -5,7 +5,8 @@
           <loading :active.sync="isLoading" 
           :is-full-page="true"></loading></div>
         <el-alert v-if="hasError" v-bind:title="title" type="error" v-bind:description="message" show-icon> </el-alert>
-        <center><h2>Login</h2></center>
+        <br/>
+        <center><h2>Welcome!</h2></center>
         <hr>
         <form role="form">
           <div class="form-group">
@@ -23,7 +24,8 @@
               <input type="checkbox">Remember me
             </label>
           </div>
-          <button class="btn btn btn-primary pull-right" @click.prevent="login">Log In</button>
+          <el-button type="primary" round icon="el-icon-right" class="btn btn btn-primary pull-right" 
+          @click.prevent="login">Log In</el-button>
         </form>
         <a class="forgotLnk" href="#"></a>
         <div class="or-box">
@@ -38,7 +40,8 @@
         <div class="row-block">
           <div class="row">
             <div class="col-md-12 row-block">
-              <a href="#" class="btn btn-primary btn-block">Create New Account</a>
+              <el-button type="primary" class="btn btn-primary btn-block" round 
+                @click="registrationPage()">Create New Account</el-button>
             </div>
           </div>
         </div>
@@ -73,6 +76,9 @@ export default {
         confirmButtonText: 'OK',
         closeOnConfirm: true
       })
+    },
+    registrationPage: function () {
+      this.$router.push('/app/registration')
     },
     login: function () {
       const username = this.username

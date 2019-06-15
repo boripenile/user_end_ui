@@ -20,7 +20,7 @@
                         <div class="col-md-3">
                             <div class="side-todo">
                             <ul>
-                                <li class="clearfix"><img src="http://api.randomuser.me/portraits/men/22.jpg" alt="avatar"> <div class="about"><div class="name">{{ getUser.first_name}} {{ getUser.last_name }}</div> <div class="status"><i class="fa fa-circle online"></i> online </div></div></li>
+                                <li class="clearfix"><img v-bind:src="getUser.image_url" alt="avatar"> <div class="about"><div class="name">{{ getUser.first_name}} {{ getUser.last_name }}</div> <div class="status"><i class="fa fa-circle online"></i> online </div></div></li>
                                 <li class="completed">Active users <b>{{users.filter(user => {return user.active === true}).length}}</b></li>
                                 <li class="pending">Inactive users <b>{{users.filter(user => {return user.active === false}).length}}</b></li>
 </ul>

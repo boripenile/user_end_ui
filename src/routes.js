@@ -36,6 +36,8 @@ import InvoicePage from './components/modules/common-page/Invoice.vue'
 import Profile from './components/modules/pages/Profile.vue'
 import Login from './components/Login.vue'
 import MyCompanies from './components/MyCompanies.vue'
+import VerifyEmail from './components/VerifyEmail.vue'
+import RegistrationPage from './components/Registration.vue'
 import NotFoundSecond from './components/modules/dashboard/500.vue'
 import SimpleTable from './components/modules/tables/SimpleTable.vue'
 import SelectTable from './components/modules/tables/SelectTable.vue'
@@ -68,6 +70,16 @@ const routes = [
         name: 'my-companies',
         component: MyCompanies,
         meta: { requiresAuth: true }
+      },
+      {
+        path: '/app/verify/:code',
+        name: 'verify-email',
+        component: VerifyEmail
+      },
+      {
+        path: '/app/registration',
+        name: 'registration',
+        component: RegistrationPage
       }
     ]
   },
