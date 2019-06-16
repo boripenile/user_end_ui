@@ -19,7 +19,7 @@
               @click="loginPage()">Try Login</el-button>
         </center>
         <br/><br/><br/>
-        <br/>  
+        <br/><br/><br/><br/>  
       </div>
   </transition>
 </template>
