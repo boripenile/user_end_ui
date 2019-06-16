@@ -295,7 +295,6 @@ export default {
           'action': 'validateReferralCode'
         }
       }).then(response => {
-        console.log(response.data)
         if (response.data.code === 400) {
           if (callback) {
             callback(response.data.message)
@@ -316,7 +315,6 @@ export default {
         if (valid) {
           this.registerUser()
         } else {
-          console.log('error submit!')
           return false
         }
       })
@@ -374,7 +372,7 @@ export default {
             this.error = false
             this.success = true
             this.message = response.data.message
-            this.resetRegistrationForm()
+            this.resetRegistrationForm('registrationForm')
           }
         }
       }).catch(error => {

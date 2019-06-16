@@ -71,7 +71,6 @@ export default {
       }
     },
     verifyEmailCode: function () {
-      console.log('Verification Code: ' + this.verifyCode)
       if (this.verifyCode != null) {
         this.isLoading = true
         this.$http.userapi.post('/users', null, {

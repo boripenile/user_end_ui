@@ -62,9 +62,6 @@ export default {
       const username = this.getUser.username
       const password = this.getUser.password
       if (username.length > 0 && password.length > 0) {
-        console.log(username)
-        console.log(password)
-        console.log(org.code)
         this.isLoading = true
         this.$http.userapi.post('/login', {
           'username': username,
@@ -77,10 +74,8 @@ export default {
         }).then(response => {
           this.isLoading = false
           if (response.data.code === 400) {
-            console.log(response.data.message)
             this.showAlert(response.data.message)
           } else {
-            console.log(response.data)
             if (response.data.token != null) {
               this.setToken(response.data.token)
               this.setOrganisation(org)

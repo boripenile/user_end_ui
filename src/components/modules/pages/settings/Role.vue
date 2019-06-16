@@ -86,7 +86,6 @@ export default {
       }).then(response => {
         this.isLoading = false
         if (response.data.code === 200) {
-          console.log(response.data.data)
           this.loadRoles()
           sweetalert('Success!', 'Role created!', 'success')
         }

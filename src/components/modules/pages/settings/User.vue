@@ -87,7 +87,6 @@ export default {
       }).then(response => {
         this.isLoading = false
         if (response.data.code === 200) {
-          console.log(response.data.data)
           this.loadUsers()
           sweetalert('Success!', 'Role created!', 'success')
         }
@@ -98,7 +97,6 @@ export default {
     },
     loadUsers: function () {
       this.isLoading = true
-      console.log('Organisation Code: ' + this.getOrganisation.code)
       this.$http.userapi.get('/users', {
         headers: {
           'action': 'findUsersByOrganisation',
@@ -107,7 +105,6 @@ export default {
         }
       }).then(response => {
         this.isLoading = false
-        console.log(response)
         if (response.data.code === 200) {
           const myUsers = response.data.data
           if (myUsers !== null && myUsers.length > 0) {
